@@ -48,6 +48,9 @@ function App() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [copied, setCopied] = useState(false);
+   if(copied){
+    toast.success('Text copied!')
+   }
 
   const translate = async () => {
     try {
@@ -83,7 +86,7 @@ function App() {
             value={output}
           ></textarea>
           <div>
-            <CopyToClipboard text={copied} onCopy={() => setCopied(true)}>
+            <CopyToClipboard text={output} onCopy={() => setCopied(true)}>
               <button
                 onClick={() => toast.success("Copied Clipboard...")}
                 class="button-17"
