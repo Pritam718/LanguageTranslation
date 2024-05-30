@@ -120,7 +120,7 @@ function App() {
         </select>
       </div>
       <div>
-        <button onClick={(e) => translate()} class="button-17" role="button">
+        <button onClick={(e) => translate()} class="button-17">
           Translate
         </button>
       </div>
