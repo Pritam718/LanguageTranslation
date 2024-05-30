@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import axios from "axios";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast, { Toaster } from "react-hot-toast";
 const languageTags = [
   { code: "en-US", name: "English (United States)" },
@@ -47,8 +47,7 @@ function App() {
   const [from, setFrom] = useState(languageTags[0].code);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [value,setValue]=useState("");
-  const [copied,setCopied]=useState(false);
+  const [copied, setCopied] = useState(false);
 
   const translate = async () => {
     try {
@@ -67,7 +66,7 @@ function App() {
       <Toaster />
       <div class="container">
         <div class="box">
-          <p >Enter text into box...</p>
+          <p>Enter text into box...</p>
           <textarea
             class="styled-textarea"
             rows="15"
@@ -84,12 +83,14 @@ function App() {
             value={output}
           ></textarea>
           <div>
-          <CopyToClipboard text={output} onCopy={()=> setCopied(true)}>
-              <button onClick={() => toast.success('Copied Clipboard...')} class="button-17">Copied Text</button>
-              
-          </CopyToClipboard>
-          
-          
+            <CopyToClipboard text={copied} onCopy={() => setCopied(true)}>
+              <button
+                onClick={() => toast.success("Copied Clipboard...")}
+                class="button-17"
+              >
+                Copied Text
+              </button>
+            </CopyToClipboard>
           </div>
         </div>
       </div>
@@ -98,7 +99,7 @@ function App() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap:'7px'
+          gap: "7px",
         }}
       >
         <div class="from">From ({from}):</div>
