@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./App.css";
 import axios from "axios";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast, { Toaster } from "react-hot-toast";
+
 const languageTags = [
   { code: "en-US", name: "English (United States)" },
   { code: "en-GB", name: "English (United Kingdom)" },
@@ -50,7 +50,7 @@ function App() {
   const [copied, setCopied] = useState(false);
 
   if (copied) {
-    toast.success("Copied Clipboard...");
+    toast.success("Copied to Clipboard...");
     setCopied(false);
   }
 
@@ -67,51 +67,56 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="text-center p-4">
       <Toaster />
-      <div class="container">
-        <div class="box">
-          <p>Enter text into box...</p>
+      <div className="md:flex justify-between gap-5">
+        <div className="md:flex-1 bg-white border border-gray-300 rounded-lg shadow-lg p-5 m-2.5 text-center hover:shadow-2xl">
+          <p className="text-2xl text-gray-800 leading-loose mb-2.5 text-left">
+            Enter text into the box...
+          </p>
           <textarea
-            class="styled-textarea"
-            rows="15"
+            className="w-full p-2.5 border border-gray-300 rounded-lg shadow-inner text-lg resize-y mt-2.5 focus:outline-none focus:border-blue-400 focus:shadow-outline-blue"
+            rows="10"
             cols="50"
             onInput={(e) => setInput(e.target.value)}
           ></textarea>
         </div>
-        <div class="box">
-          <p>Translation</p>
+        <div className="flex-1 bg-white border border-gray-300 rounded-lg shadow-lg p-5 m-2.5 text-center hover:shadow-2xl">
+          <p className="text-2xl text-gray-800 leading-loose mb-2.5 text-left">
+            Translation
+          </p>
           <textarea
-            class="styled-textarea"
-            rows="15"
+            className="w-full p-2.5 border border-gray-300 rounded-lg shadow-inner text-lg resize-y mt-2.5 focus:outline-none focus:border-blue-400 focus:shadow-outline-blue"
+            rows="10"
             cols="50"
             value={output}
           ></textarea>
-          <div>
+          <div className="mt-4">
             <CopyToClipboard text={output} onCopy={() => setCopied(true)}>
-              <button class="button-17">Copied Text</button>
+              <button className="button-17 inline-flex items-center bg-white rounded-full border-none shadow-md p-0.5 text-gray-800 cursor-pointer font-sans font-medium h-12 justify-center text-base tracking-wide transition transform will-change-transform will-change-opacity z-0 max-w-full overflow-visible px-6 focus:outline-none focus:border-blue-600 focus:shadow-outline-blue hover:bg-blue-50 hover:text-blue-700 active:shadow-lg disabled:shadow-md">
+                Copy Text
+              </button>
             </CopyToClipboard>
           </div>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "7px",
-        }}
-      >
-        <div class="from">From ({from}):</div>
-        <select onChange={(e) => setFrom(e.target.value)}>
+      <div className="md:flex justify-center items-center gap-2 mt-4">
+        <div className="text-lg">From ({from}):</div>
+        <select
+          onChange={(e) => setFrom(e.target.value)}
+          className="p-2.5 border border-gray-300 rounded-lg"
+        >
           {languageTags.map((opt) => (
             <option key={opt.code} value={opt.code}>
               {opt.name}
             </option>
           ))}
         </select>
-        <div class="from">To ({to}):</div>
-        <select onChange={(e) => setTo(e.target.value)}>
+        <div className="text-lg">To ({to}):</div>
+        <select
+          onChange={(e) => setTo(e.target.value)}
+          className="p-2.5 border border-gray-300 rounded-lg"
+        >
           {languageTags.map((opt) => (
             <option key={opt.code} value={opt.code}>
               {opt.name}
@@ -119,8 +124,11 @@ function App() {
           ))}
         </select>
       </div>
-      <div>
-        <button onClick={(e) => translate()} class="button-17">
+      <div className="mt-4">
+        <button
+          onClick={(e) => translate()}
+          className="button-17 inline-flex items-center bg-white rounded-full border-none shadow-md p-0.5 text-gray-800 cursor-pointer font-sans font-medium h-12 justify-center text-base tracking-wide transition transform will-change-transform will-change-opacity z-0 max-w-full overflow-visible px-6 focus:outline-none focus:border-blue-600 focus:shadow-outline-blue hover:bg-blue-50 hover:text-blue-700 active:shadow-lg disabled:shadow-md"
+        >
           Translate
         </button>
       </div>
